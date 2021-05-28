@@ -37,7 +37,7 @@ public class NumberGameApp {
 		init();
 		while(true) {
 			input();
-			if(confirm()) {
+			if (confirm()) {
 				break;
 			}
 		}

@@ -10,8 +10,9 @@ public class AppMain {
 //		star.drawEq(11);
 //		star.drawEqInvert(11);
 		
-		star.drawTree(1, 3);
-		star.drawTree(2, 4);
-		star.drawTree(3, 5);
+		star.drawTitle("나무", 100);
+		star.drawTree(1, 4);
+		star.drawTree(2, 6);
+		star.drawTree(4, 8);
 	}
 }

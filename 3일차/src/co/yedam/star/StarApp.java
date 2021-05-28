@@ -48,6 +48,14 @@ public class StarApp {
 	
 	
 	// 나무만들기 ~~~~~~~~ 과제 ~~~~~~~~
+	
+	void drawTitle(String title, int cnt) {
+		System.out.println(pad('=', cnt));
+		System.out.println(title);
+		System.out.println(pad('=', cnt));
+	}
+	
+	
 	void drawTree(int a, int b) {
 		for (int i=a; i<=b; i++) {
 			System.out.print(pad(' ', b-i));	// 공백출력
