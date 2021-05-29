@@ -1,5 +1,7 @@
 package co.yedam.numgame;
 
+import java.util.Scanner;
+
 public class NumberGameApp {
 	
 	int com;
@@ -14,22 +16,27 @@ public class NumberGameApp {
 	
 	// user가 수 입력
 	void input() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.print("user가 수 입력: ");
+		user = scanner.nextInt();
 	}
 	
 	// 비교해서 높다, 낮다: false 정답: true 출력
+	boolean result;
 	boolean confirm() {
 		if (com == user) {
-			return true;
+			result = true;
+			System.out.println("정답");
 		}
-		if (com > user) {
-			System.out.println("높다");
-			return false;
+		else if (com < user) {
+			result = false;
+			System.out.println("정답보다 높다");
 		}
-		if (com < user) {
-			System.out.println("낮다");
-			return false;
+		else if (com > user) {
+			result = false;
+			System.out.println("정답보다 낮다");
 		}
+		return result;
 		
 	}
 	
@@ -37,7 +44,7 @@ public class NumberGameApp {
 		init();
 		while(true) {
 			input();
-			if (confirm()) {
+			if(confirm() == true) {			//confirm() 메소드의 결과값이 true면 반복 종료
 				break;
 			}
 		}
