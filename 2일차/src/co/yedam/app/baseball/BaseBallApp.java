@@ -14,7 +14,7 @@ public class BaseBallApp {
 	int com1, com2, com3;
 	int user1, user2, user3;
 	
-	void makeRnd() {
+	public void makeRnd() {
 		// 난수생성
 		System.out.println("com 숫자 생성");
 		com1 = (int)(Math.random()*10);
@@ -25,7 +25,7 @@ public class BaseBallApp {
 	}
 
 	
-	void userInput() {
+	public void userInput() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("user 숫자 입력: ");
 		user1 = scanner.nextInt();
@@ -36,7 +36,7 @@ public class BaseBallApp {
 				
 	}
 	
-	void count() {
+	public void count() {
 		// 스트라이크, 볼 카운트
 		
 		if (com1 == user1) {
@@ -64,7 +64,7 @@ public class BaseBallApp {
 
 	}
 	
-	void start() {
+	public void start() {
 		makeRnd();
 		while(strike<3) {
 			strike = ball = 0;

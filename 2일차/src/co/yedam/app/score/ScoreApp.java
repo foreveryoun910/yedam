@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class ScoreApp {
 	
-	int kor;
-	int eng;
-	int mat;
-	int sum;
+	private int kor;
+	private int eng;
+	private int mat;
+	private int sum;
 	float avg;
 	char grade;
 
