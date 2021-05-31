@@ -57,6 +57,7 @@ public class Employee {
 	
 	public Employee(int employeeId, String name, int salary) {
 		this(employeeId, name, 0, salary, null);
+
 	}
 	
 	Employee(){}
