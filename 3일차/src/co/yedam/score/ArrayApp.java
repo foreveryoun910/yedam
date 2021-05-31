@@ -1,31 +1,46 @@
 package co.yedam.score;
 
+import java.util.Scanner;
+
 public class ArrayApp {
 	
-	int[] arr = new int[10]; // 0~9
+	int[] arr;			// 성적
+	int studentNum;		// 학생수
+	
+	Scanner scanner = new Scanner(System.in);
 	
 	void init() {
-		// 배열에 초기값 지정
+		// 인원수를 입력받아서 그 인원수만큼 배열을 초기화
+		System.out.print("학생수> ");
+		studentNum = scanner.nextInt();
+		arr = new int[studentNum];
+	}
+	
+	void input() {
+		// 점수 입력
 		for (int i=0; i<arr.length; i++) {	
-			arr[i] = (int)(Math.random()*100)+1;	
+			System.out.printf("scores[%d]> ", i);
+			arr[i] = scanner.nextInt();	
 		}
 	}
 	
 	void print() {
 		// 배열 출력
 		for (int i=0; i<arr.length; i++) {		
-			System.out.print(arr[i] + " ");
+			System.out.printf("scores[%d]> %d\n", i, arr[i]);
 		}
 		System.out.println();
 	}
 	
-	void total() {
-		// 합계
+	void avg() {
+		// 합계	---------------->>>> 평균으로 변경
 		int result = 0;
+		double avg;
 		for (int i=0; i<arr.length; i++) {
 			result += arr[i];
 		}
-		System.out.println("합계: " + result);
+		avg = (double)result / arr.length;
+		System.out.printf("평균 점수: %.2f\n", avg);
 	}
 	
 	void max() {
@@ -36,7 +51,7 @@ public class ArrayApp {
 				max = arr[i];
 			}
 		}
-		System.out.println("최댓값: " + max);
+		System.out.println("최고 점수: " + max);
 	}
 	
 	
@@ -45,10 +60,40 @@ public class ArrayApp {
 
 		ArrayApp app = new ArrayApp();
 		
-		app.init();
-		app.print();
-		app.total();
-		app.max();
+		boolean run = true;
+		Scanner scanner = new Scanner(System.in);
+		int selectNum = 0;
+		
+		while(run) {
+			System.out.println("--------------------------------------------");
+			System.out.println("1.학생수 | 2.점수입력 | 3.점수리스트 | 4.분석 | 5.종료");
+			System.out.println("--------------------------------------------");
+			System.out.print("선택> ");
+			
+			selectNum = scanner.nextInt();
+			if(selectNum == 1) {
+				app.init();
+			}
+			if(selectNum == 2) {
+				app.input();
+			}
+			if(selectNum == 3) {
+				app.print();
+			}
+			if(selectNum == 4) {
+				app.max();
+				app.avg();
+			}
+			if(selectNum == 5) {
+				run = false;
+				System.out.println("프로그램 종료");
+			}
+		}
+		
+//		app.init();
+//		app.print();
+//		app.avg();
+//		app.max();
 
 	}
 	

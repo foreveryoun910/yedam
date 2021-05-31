@@ -11,8 +11,8 @@ public class AppMain {
 //		star.drawEqInvert(11);
 		
 		star.drawTitle("나무", 100);
-		star.drawTree(1, 4);
-		star.drawTree(2, 6);
-		star.drawTree(4, 8);
+		star.drawEq(1, 4);
+		star.drawEq(2, 6);
+		star.drawEq(4, 8);
 	}
 }

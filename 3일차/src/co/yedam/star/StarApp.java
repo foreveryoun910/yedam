@@ -56,9 +56,9 @@ public class StarApp {
 	}
 	
 	
-	void drawTree(int a, int b) {
+	void drawEq(int a, int b) {
 		for (int i=a; i<=b; i++) {
-			System.out.print(pad(' ', b-i));	// 공백출력
+			System.out.print(pad(' ', 50) + pad(' ', b-i));	// 공백출력
 			System.out.println(pad('*', 2*i-1));
 		}
 	}
