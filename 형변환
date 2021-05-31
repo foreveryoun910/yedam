@@ -1,0 +1,15 @@
+형변환
+         1	  	 2		  4	    	8
+정수형: byte < short < int	  < long
+실수형: 				float < double
+
+스트링 ----- > byte		  Byte.parseByte(변수)
+			        short			Short.parseShort(변수)
+              int				Integer.parseInt(변수)
+ 			      	long			Long.parseLong(변수)
+ 			      	float			Float.parseFloat(변수)
+ 			      	double		Double.parseDouble(변수)
+ 				      char
+ 			      	boolean		Boolean.parseBoolean(변수)
+ 
+   		<------ 			  	String.valueOf(변환할 값)
