@@ -40,7 +40,7 @@ public class EmployeeApp {
 			if(num == employee[i].employeeId) {
 				name = employee[i].name;
 			}
-			else {
+			if(num != employee[i].employeeId) {
 				System.out.println("일치하는 사원이 없습니다.");
 			}
 		}

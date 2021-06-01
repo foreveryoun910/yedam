@@ -1,4 +1,4 @@
-package co.yedam.app.bookrent.complete;
+package co.yedam.member;
 
 import java.util.Scanner;
 
