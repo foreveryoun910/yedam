@@ -32,13 +32,19 @@ public class EmployeeApp {
 		}
 	}
 	
-	String search() {
+	String search(int num) {
 		//사번으로 검색해서 사원 찾기
+		String name = "";
+		//String result = employee.name;
 		for(int i=0; i<count; i++) {
-			if(i == employee[i].employeeId) {
-				return employee[i].name;
+			if(num == employee[i].employeeId) {
+				name = employee[i].name;
+			}
+			else {
+				System.out.println("일치하는 사원이 없습니다.");
 			}
 		}
+		return name;
 	}
 	
 	int sum() {

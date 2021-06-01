@@ -9,9 +9,9 @@ public class EmployeeAppMain {
 		int selectNum = 0;
 		boolean run = true;
 		while (run) {
-			System.out.println("=========================================================");
+			System.out.println("============================================================");
 			System.out.println("1.사원수 | 2.사원정보입력 | 3.사원리스트 | 4.검색 | 5.급여합계 | 6.종료");
-			System.out.println("=========================================================");
+			System.out.println("============================================================");
 			System.out.print("선택> ");
 			selectNum = scanner.nextInt();
 			if (selectNum == 1) {
@@ -24,7 +24,7 @@ public class EmployeeAppMain {
 				System.out.print("검색할 사번> ");
 				int num = scanner.nextInt();
 				String name = app.search(num);
-				System.out.print("이름은 " + name);
+				System.out.println("이름은 " + name);
 			} else if (selectNum == 5) {
 				int s = app.sum();
 				System.out.println("총 급여는 " + s + " 입니다.");
