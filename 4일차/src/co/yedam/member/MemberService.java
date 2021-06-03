@@ -72,17 +72,17 @@ public class MemberService implements Service {
 	
 	
 	
-//	// 로그인 & 로그아웃
-//	boolean login(String id, String password) {
-//		boolean result = false;
-//		for(int i=0; i<count; i++) {
-//			if(id.equals(members[i].id) && password.equals(members[i].password)) {
-//				result = true;
-//				break;
-//			}
-//		}
-//		return result;
-//	}
+	// 로그인 & 로그아웃
+	boolean login(String id, String password) {
+		boolean result = false;
+		for(int i=0; i<count; i++) {
+			if(id.equals(members[i].id) && password.equals(members[i].password)) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
 	
 	
 	// 로그인 인수 입력받아서
