@@ -56,4 +56,21 @@ public class Robot {
 		this.leg = leg;
 		this.name = name;
 	}
+
+	@Override		//EqualTest에서 robot클래스 이퀄메소드 사용하기 위해 오버라이딩
+					//객체 받아와서 강제캐스팅해서 사용하기 연습
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		//return super.equals(obj);
+		Robot r2 = ((Robot)obj);
+		return r2.arm == this.arm && r2.leg == this.leg;
+		}
+
+	@Override		//toString 오버라이딩 가능
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "arm: " + arm + '\t' + "leg: " + leg;
+	}
+	
+	
 }
