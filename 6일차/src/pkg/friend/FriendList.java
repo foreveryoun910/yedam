@@ -26,7 +26,7 @@ public class FriendList implements FriendAccess {
 		// 수정
 		friends.set(0, friend);
 		for(Friend fu : friends) {
-			System.out.println(fu.getName());
+			System.out.println(fu);
 		}
 		//???????
 	}
@@ -37,8 +37,9 @@ public class FriendList implements FriendAccess {
 		for(Friend fd : friends) {
 			if(fd.getName().equals(name)) {
 				friends.remove(name);
+				System.out.println(friends);
 			}
-		}	
+		}
 	}
 
 	@Override
