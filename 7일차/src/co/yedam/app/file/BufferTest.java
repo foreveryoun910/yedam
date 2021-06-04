@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.PrintStream;
 
 //14-2 보조스트림 p.615
+//파일 입력해서 모니터 출력
 public class BufferTest {
 	public static void main(String[] args) {
 		
