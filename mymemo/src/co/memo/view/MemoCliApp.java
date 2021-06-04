@@ -62,9 +62,9 @@ public class MemoCliApp {
 	
 	// 등록, 추가
 	public void input() {
-		String date = ScannerUtil.readStr("날짜");
-		String content = ScannerUtil.readStr("내용");
-		Memo memo = new Memo(date, content);
+		Memo memo = ScannerUtil.readMemo();
+		//String content = ScannerUtil.readMemo("내용");
+		//Memo memo = new Memo(date, content);
 		memoList.input(memo);
 
 	}

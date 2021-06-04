@@ -20,7 +20,7 @@ public class ScannerUtil {
 		int result = 0;
 		while(true) {
 			try {
-				String temp = scanner.next();
+				String temp = scanner.nextLine();
 				result = Integer.parseInt(temp);//scanner.nextInt();
 				break;
 			} catch(Exception e) {
@@ -72,7 +72,7 @@ public class ScannerUtil {
 	
 	public static Memo readMemo() {
 		System.out.print("날짜 / 내용> ");
-		String result = scanner.next();
+		String result = scanner.nextLine();
 		String[] arr = result.split(" / ");	//, 로 입력받았으니까 , 로 split해서 각 요소에 담아준다
 		//arr 크기가 3인지 확인하고 3이 아니면 다시 돌리는 try catch while문 돌려보기
 		Memo memo = new Memo(arr[0],arr[1]);
