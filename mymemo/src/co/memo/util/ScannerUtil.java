@@ -40,7 +40,7 @@ public class ScannerUtil {
 	public static String readStr() {
 		String result = "";
 		try {
-			result = scanner.next();
+			result = scanner.nextLine();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
