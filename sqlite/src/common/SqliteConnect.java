@@ -135,31 +135,31 @@ public class SqliteConnect {
 	
 	
 	//이름으로 조회 
-	public static ArrayList<Person> getNamePerson(String name) {
-		ArrayList<Person> persons = new ArrayList<Person>();
+	public static ArrayList<Person> getNamePerson() {
 		connect();
-		String sql = "select * from person where name = ?";
+		String sql = "select * from person";
+		ArrayList<Person> personList = new ArrayList<Person>();
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, name);
 			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
+
+			while (rs.next()) {
 				Person p = new Person();
+
+				p.setId(rs.getInt("id"));
 				p.setName(rs.getString("name"));
 				p.setAge(rs.getInt("age"));
-				p.setId(rs.getInt("id"));
 				p.setPhone(rs.getString("phone"));
-				
-				persons.add(p);
-			}	
+
+				personList.add(p);
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		return persons;
-		
+		return personList;
 	}
 
 
@@ -208,6 +208,7 @@ public class SqliteConnect {
 		while (true) {
 			System.out.println("1: 전체리스트 | 2: 입력 | 3: 수정 | 4: 삭제 | 5: 한건조회 | 6: 이름으로 조회 | 9: 종료");
 			int menu = scanner.nextInt();
+			scanner.nextLine();
 			if (menu == 1) {
 				// 전체리스트 보여주는 기능
 				ArrayList<Person> list = getPersonList(); // getPersonList에서 return한 값을 ArrayList타입의 list(변수명)에 저장
@@ -280,26 +281,33 @@ public class SqliteConnect {
 					System.out.println(p);
 				}
 
-				
-			} else if (menu == 6) {
-				// 이름으로 조회 -----> 이름은 중복 가능
-				System.out.print("조회할 이름을 입력하세요> ");
+			}
+			
+			else if (menu == 6) {
+				System.out.print("조회할 이름를 입력하세요> ");
 				String name = scanner.nextLine();
-				scanner.nextLine();
-				ArrayList<Person> p = getNamePerson(name);
-				
-				for(Person ps : p) {
-					if(ps.equals(name)) {
-						System.out.println(ps);
-					}
-					else {
-						System.out.println("조회된 값이 없습니다.");
-						break;
-					}
-				}
+//				scanner.nextLine();
 
+				ArrayList<Person> personList = getNamePerson();
+				// 전체 목록에서
+				// 입력한 이름이 배열 요소중에 없으면 존재하지 않는 이름입니다. 출력
 				
-			} else if (menu == 9) {
+//				for(int i=0; i<personList.size(); i++) {
+//					if (personList.contains(name) == false) {
+//						System.out.println("존재하지 않는 이름입니다.");
+//					}					
+//				}
+ 
+				// 목록 도는동안 이름이 입력한 이름이랑 같은 요소를 출력
+				for (Person p : personList) {
+					if (p.getName().equals(name)) {
+						System.out.println(p);
+					}
+				} // end of for
+			}
+				
+			
+			else if (menu == 9) {
 				break;
 			}
 

@@ -3,6 +3,8 @@ package co.friend.view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import co.friend.access.FriendAccess;
+import co.friend.access.FriendDAO;
 import co.friend.access.FriendList;
 import co.friend.model.Friend;
 import co.friend.util.ScannerUtil;
@@ -10,7 +12,8 @@ import co.friend.util.ScannerUtil;
 //메뉴를 보여주는 인터페이스 화면
 public class FriendCliApp {
 	
-	FriendList friendList = new FriendList();
+	//FriendList friendList = new FriendList();
+	FriendAccess friendList = new FriendDAO();
 	
 	public void start() {
 		int menunum;
@@ -46,13 +49,7 @@ public class FriendCliApp {
 	}
 	
 	
-	public void findTel() {
-		//전화번호로 검색
-		String tel = ScannerUtil.readStr("검색할 전화번호");
-		Friend friend = friendList.findTel(tel);
-		System.out.println(friend);
-		
-	}
+
 
 
 	public void menuTitle() {
@@ -70,10 +67,11 @@ public class FriendCliApp {
 	
 	//등록
 	public void insert() {
-		String gubun = ScannerUtil.readStr("구분");
-		String name =  ScannerUtil.readStr("이름");
-		String tel =  ScannerUtil.readStr("전화번호");
-		Friend friend = new Friend(gubun,name,tel);
+		Friend friend = ScannerUtil.readFriend();
+//		String gubun = ScannerUtil.readStr("구분");
+//		String name =  ScannerUtil.readStr("이름");
+//		String tel =  ScannerUtil.readStr("전화번호");
+//		Friend friend = new Friend(gubun,name,tel);
 		friendList.insert(friend);
 		
 	}
@@ -81,10 +79,12 @@ public class FriendCliApp {
 	//이름으로 검색해서 전화번호 수정
 	public void update() {
 		Friend friend = new Friend();
-		friend.setName(ScannerUtil.readStr("검색할 이름"));
+		friend.setName(ScannerUtil.readStr("조회할 이름"));
+		friend.setGubun(ScannerUtil.readStr("조회할 구분"));
 		friend.setTel(ScannerUtil.readStr("변경할 전화번호"));
 		friendList.update(friend);
 		
+
 	}
 
 	//이름으로 검색해서 삭제
@@ -111,8 +111,14 @@ public class FriendCliApp {
 		System.out.println(friend);
 		
 	}
+	
+	public void findTel() {
+		//전화번호로 검색
+		String tel = ScannerUtil.readStr("검색할 전화번호");
+		Friend friend = friendList.findTel(tel);
+		System.out.println(friend);
+		
+	}
 
-	
-	
 	
 }
