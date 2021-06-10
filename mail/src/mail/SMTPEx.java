@@ -56,8 +56,8 @@ public class SMTPEx {
 		PasswordAuthentication account;
 
 		public MyAuthentication() {
-			String id = "kokolog";
-			String pw = "#ksdafjkaek!!";
+			String id = "id";
+			String pw = "password";
 			account = new PasswordAuthentication(id, pw);
 		}
 
