@@ -31,6 +31,7 @@ public class BoardApp {
 			case 3: updatePost(); break;
 			case 4: deletePost(); break;
 			case 5: findPost(); break;
+			case 6: inputComment(); break;
 			}
 			
 		} while(menunum != 0);
@@ -38,9 +39,9 @@ public class BoardApp {
 	
 	
 	public void menuTitle() {
-		System.out.println("=================================================================");
-		System.out.println(" 1.전체글 조회 | 2.글 등록 | 3.글 수정 | 4.글 삭제 | 5.글 선택조회 | 0.종료");
-		System.out.println("=================================================================");
+		System.out.println("============================================================================");
+		System.out.println(" 1.전체글 조회 | 2.글 등록 | 3.글 수정 | 4.글 삭제 | 5.글 선택조회 | 6.댓글달기 | 0.종료");
+		System.out.println("============================================================================");
 	}
 	
 	
@@ -64,8 +65,18 @@ public class BoardApp {
 	
 	//3.게시글 수정: 글번호->수정
 	public void updatePost() {
-		Board board = new Board();		
-		board.setB_id(ScannerUtil.readInt("조회할 글의 번호"));
+		ArrayList<Board> list = boardList.findAllPost();
+		Board board = new Board();
+		System.out.print("조회할 글의 번호> ");
+		int b_id = scan.nextInt();
+		scan.nextLine();
+		
+		if(! list.contains(b_id)) {
+			System.out.println("해당 번호는 존재하지 않습니다");
+		}
+		
+		board.setB_id(b_id);
+//		board.setB_id(ScannerUtil.readInt("조회할 글의 번호"));
 		board.setB_title(ScannerUtil.readStr("변경할 제목"));
 		board.setB_content(ScannerUtil.readStr("변경할 내용"));
 		boardList.updatePost(board);
@@ -83,6 +94,27 @@ public class BoardApp {
 		String b_writer = ScannerUtil.readStr("작성자 검색");
 		ArrayList<Board> boards = boardList.findPost(b_writer);
 		System.out.println(boards);
+	}
+	
+//	public void findIdPost() {
+//		int b_id = ScannerUtil.readInt("글번호 검색");
+//		Board b = boardList.findIdPost(b_id);
+//		System.out.println(b);
+//	}
+	
+	public void findIdPost() {
+		int b_id = ScannerUtil.readInt("글번호 검색");
+		Board b = boardList.findIdPost(b_id);
+		System.out.println(b);
+		
+		int p_id = b.getB_id();
+	}
+	
+	//6.댓글달기: parent_id를 조회해서???나오는 댓글들을 다 출력???
+	//가닥 잡히면 Access랑 DAO에 추가하는 것 까먹지 말기
+	public void inputComment() {
+		findIdPost();
+		
 	}
 	
 }

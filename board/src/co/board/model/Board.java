@@ -12,6 +12,7 @@ public class Board {
 	private String b_title;
 	private String b_content;
 	private String b_writer;
+	private int b_parent_id;
 	
 	private String u_id;
 	private String u_pass;
@@ -73,6 +74,16 @@ public class Board {
 		this.u_pass = u_pass;
 	}
 	
+	
+	
+	public int getB_parent_id() {
+		return b_parent_id;
+	}
+
+	public void setB_parent_id(int b_parent_id) {
+		this.b_parent_id = b_parent_id;
+	}
+
 	
 	
 	@Override

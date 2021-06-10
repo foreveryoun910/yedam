@@ -136,7 +136,32 @@ public class BoardDAO implements BoardAccess {
 	
 		return boardList;
 	}
-
+	
+	
+	//글 번호로 게시글 조회하기
+	public Board findIdPost(int b_id) {
+		connect();
+		Board board = new Board();;
+		
+		try {
+			psmt = conn.prepareStatement("select * from board where b_id=?");
+			psmt.setInt(1, b_id);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				board.setB_id(rs.getInt("b_id"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_writer(rs.getString("b_writer"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {close();}
+	
+		return board;
+	}
 	
 	
 	

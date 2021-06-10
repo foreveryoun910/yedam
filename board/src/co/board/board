@@ -40,6 +40,7 @@
 				"b_title"	TEXT NOT NULL,
 				"b_content"	TEXT NOT NULL,
 				"b_writer"	TEXT NOT NULL,
+				"b_parent_id"	TEXT
 				PRIMARY KEY("b_id" AUTOINCREMENT)
 			);
 			
@@ -58,3 +59,18 @@
 			where u_id = ? and u_pass = ? 를 해서
 			결과값이 뜨면 정확히 아이디 비번을 입력했다는 뜻이니까 로그인 성공
 			결과갑 없으면,, 뭐 로그인에 실패했습니다, , 출력
+			
+			
+			
+			댓글 달기!!!!!!!!!!!!!!!!!!!!
+				근데 이거를 sqlite에서 한번 해볼까??????????????????????
+				한 건 조회를 해..
+				조회를 해서... 나온 내용을 board.get() 어쩌고 형식으로 따로 저장을 할 수 있어
+				그거를 b_parent_id에 저장하고..
+				insert를 할 때... id는 자동으로 증가하고.. userId 같은 건 일단 걍 임의의 내용으로 넣고
+				댓글 내용을 쓰고 데이터 추가를 해
+				그리고 나중에 parend_id = 3인 데이터를 주루루루룩 출력하는거지
+			
+			
+			
+			
