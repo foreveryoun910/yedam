@@ -40,7 +40,7 @@ public class BoardApp {
 	
 	public void menuTitle() {
 		System.out.println("============================================================================");
-		System.out.println(" 1.전체글 조회 | 2.글 등록 | 3.글 수정 | 4.글 삭제 | 5.글 선택조회 | 6.댓글달기 | 0.종료");
+		System.out.println(" 1.전체글 조회 | 2.글 등록 | 3.글 수정 | 4.글 삭제 | 5.글 선택조회 | 6.댓글 등록 | 0.종료");
 		System.out.println("============================================================================");
 	}
 	
@@ -52,14 +52,17 @@ public class BoardApp {
 			System.out.println(board);
 		}
 		
+		
+		//if b_comment가 null이 아니면 b_id = b_parentId인 comment 출력하고 null이면 공백 출력
 	}
 	
 	//2.게시글 등록
 	public void createPost() {
-		String b_title = ScannerUtil.readStr("제목 입력");
-		String b_content = ScannerUtil.readStr("내용 입력");
-		String b_writer = ScannerUtil.readStr("작성자 입력");
-		Board board = new Board(b_title, b_content, b_writer);
+		Board board = new Board();
+		board.setB_title(ScannerUtil.readStr("제목 입력")); //String b_title = ScannerUtil.readStr("제목 입력");
+		board.setB_content(ScannerUtil.readStr("내용 입력")); //String b_content = ScannerUtil.readStr("내용 입력");
+		board.setB_writer(ScannerUtil.readStr("작성자 입력")); //String b_writer = ScannerUtil.readStr("작성자 입력");
+		//Board board = new Board(b_title, b_content, b_writer);
 		boardList.createPost(board);
 	}
 	
@@ -71,14 +74,15 @@ public class BoardApp {
 		int b_id = scan.nextInt();
 		scan.nextLine();
 		
-		if(! list.contains(b_id)) {
-			System.out.println("해당 번호는 존재하지 않습니다");
-		}
+//		if(! list.contains(b_id)) {
+//			System.out.println("해당 번호는 존재하지 않습니다");
+//		}
 		
 		board.setB_id(b_id);
 //		board.setB_id(ScannerUtil.readInt("조회할 글의 번호"));
 		board.setB_title(ScannerUtil.readStr("변경할 제목"));
 		board.setB_content(ScannerUtil.readStr("변경할 내용"));
+		System.out.println("게시글이 등록되었습니다.");
 		boardList.updatePost(board);
 		
 	}
@@ -96,25 +100,22 @@ public class BoardApp {
 		System.out.println(boards);
 	}
 	
-//	public void findIdPost() {
-//		int b_id = ScannerUtil.readInt("글번호 검색");
-//		Board b = boardList.findIdPost(b_id);
-//		System.out.println(b);
-//	}
-	
-	public void findIdPost() {
-		int b_id = ScannerUtil.readInt("글번호 검색");
-		Board b = boardList.findIdPost(b_id);
-		System.out.println(b);
-		
-		int p_id = b.getB_id();
-	}
-	
+
 	//6.댓글달기: parent_id를 조회해서???나오는 댓글들을 다 출력???
 	//가닥 잡히면 Access랑 DAO에 추가하는 것 까먹지 말기
 	public void inputComment() {
-		findIdPost();
+		Board board = new Board();
+		board.setB_parent_id(ScannerUtil.readInt("댓글 달 글번호"));
+		//int b_id = ScannerUtil.readInt("댓글 달 글번호");
+		board.setB_comment(ScannerUtil.readStr("댓글 입력")); //String b_comment = ScannerUtil.readStr("댓글 입력");
+		//board.setB_parent_id(b_id);
+		//System.out.println(board + "\n" + "└─댓글: " + board.getB_comment());
+		boardList.inputComment(board);
+		System.out.println("입력한 댓글: " + board.getB_comment());
+		
 		
 	}
+	
+	
 	
 }

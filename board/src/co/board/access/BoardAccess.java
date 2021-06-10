@@ -21,6 +21,7 @@ public interface BoardAccess {
 	//5.게시글 조회(상세보기)->작성자 이름으로 게시글 조회하기
 	public ArrayList<Board> findPost(String b_writer);
 	
-	public Board findIdPost(int b_id);
+	//6. 댓글달기
+	public Board inputComment(Board board);
 	
 }

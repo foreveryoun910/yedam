@@ -13,29 +13,64 @@ public class Board {
 	private String b_content;
 	private String b_writer;
 	private int b_parent_id;
+	private String b_comment;
 	
-	private String u_id;
-	private String u_pass;
-	
+
 	
 	public Board() {}
 	
-	public Board(int b_id, String b_title, String b_content, String b_writer) {
+	public Board(int b_id, String b_title, String b_content, String b_writer, int b_parent_id, String b_comment) {
 		super();
 		this.b_id = b_id;
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.b_writer = b_writer;
+		this.b_parent_id = b_parent_id;
+		this.b_comment = b_comment;
 	}
 	
+	
+	public Board(int b_id, String b_title, String b_content, String b_writer) {
+//		super();
+//		this.b_id = b_id;
+//		this.b_title = b_title;
+//		this.b_content = b_content;
+//		this.b_writer = b_writer;
+	}
+	
+	
+	//등록하면 보이는 출력양식
 	public Board(String b_title, String b_content, String b_writer) {
-		this(0, b_title, b_content, b_writer);
+		//this(0, b_title, b_content, b_writer);
 		
-		System.out.printf("%d\t%s\t%s\n%s\n", b_id, b_title, b_writer, b_content);
+		//System.out.printf("%d\t%s\t%s\n%s\n", b_id, b_title, b_writer, b_content);
 		
+	}
+	
+	
+	//댓글 달면 나오는 풍경
+	public Board(int b_id, String b_comment) {
+		//this(b_id, "제목", b_content, "작성자", 0, b_comment);
+		//System.out.printf("%d\t%s\t%s\n%s\n", b_id, b_title, b_writer, b_content);
 	}
 	
 
+	
+	@Override
+	public String toString() {
+		return "글 번호 [" + b_id + "] " + "\n" + "제목: " + b_title + "\n" + "작성자: " + b_writer + "\n" + 
+				"내용: " + b_content + "\n";
+	}
+	
+	
+	/*
+	 * 글 번호 [ ]
+	 * 제목: 					/ 작성자:
+	 * 내용:
+	 * └─댓글:  (+ "└─댓글: " + b_comment)
+	 */
+	
+	
 
 	public int getB_id() {
 		return b_id;
@@ -61,18 +96,7 @@ public class Board {
 	public void setB_writer(String b_writer) {
 		this.b_writer = b_writer;
 	}
-	public String getU_id() {
-		return u_id;
-	}
-	public void setU_id(String u_id) {
-		this.u_id = u_id;
-	}
-	public String getU_pass() {
-		return u_pass;
-	}
-	public void setU_pass(String u_pass) {
-		this.u_pass = u_pass;
-	}
+
 	
 	
 	
@@ -86,10 +110,13 @@ public class Board {
 
 	
 	
-	@Override
-	public String toString() {
-		return "글 번호: " + b_id + "\n" + "제목: " + b_title + ", 작성자: " + b_writer + "\n" + "내용: " + b_content;
+	public String getB_comment() {
+		return b_comment;
 	}
-	
+
+	public void setB_comment(String b_comment) {
+		this.b_comment = b_comment;
+	}
+
 	
 }
