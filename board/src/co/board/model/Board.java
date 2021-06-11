@@ -14,8 +14,12 @@ public class Board {
 	private String b_writer;
 	private int b_parent_id;
 	
-
+	private String u_id;
+	private String u_pass;
 	
+
+
+
 	public Board() {}
 	
 	public Board(int b_id, String b_title, String b_content, String b_writer, int b_parent_id) {
@@ -60,7 +64,7 @@ public class Board {
 	//전체조회 및 기본출력양식
 	@Override
 	public String toString() {
-		System.out.printf(" %d\t\t %s\t\t\t %s", b_id, b_title, b_writer);
+		System.out.printf(" %-15d %-30s %-10s", b_id, b_title, b_writer);
 		//return "글 번호 [" + b_id + "] " + "\n" + "제목: " + b_title + "\n" + "작성자: " + b_writer + "\n" + 
 			//	"내용: " + b_content + "\n";
 		return "";
@@ -112,5 +116,24 @@ public class Board {
 		this.b_parent_id = b_parent_id;
 	}
 
+	
+	
+	public String getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
+	}
+
+	public String getU_pass() {
+		return u_pass;
+	}
+
+	public void setU_pass(String u_pass) {
+		this.u_pass = u_pass;
+	}
+	
+	
 	
 }

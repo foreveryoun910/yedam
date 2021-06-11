@@ -17,6 +17,9 @@ public class BoardApp {
 	Board board;
 
 	public void start() {
+		
+		login();
+		
 		int menunum;
 		do {
 			//메뉴출력
@@ -106,7 +109,7 @@ public class BoardApp {
 		System.out.println("글번호" + "\t" + "\t" + "제목" + "\t" + "\t" + "\t" + "\t" + "작성자");
 		System.out.println("------------------------------------------------------------------");
 		for(Board b : boards) {
-			System.out.printf(" %d\t\t %s\t\t\t %s\n\n<내용>\n %s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
+			System.out.printf(" %-15d %-30s -10%s\n\n\n %-10s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
 		}
 		//System.out.println(boards);
 	}
@@ -121,8 +124,9 @@ public class BoardApp {
 		System.out.println("글번호" + "\t" + "\t" + "제목" + "\t" + "\t" + "\t" + "\t" + "작성자");
 		System.out.println("------------------------------------------------------------------");
 		for(Board b : boards) {
-			System.out.printf(" %d\t\t %s\t\t\t %s\n\n\n %s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
+			System.out.printf(" %-15d %-30s -10%s\n\n\n %-10s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
 		}
+		System.out.println("------------------------------------------------------------------");
 		ArrayList<Board> bList = boardList.printComment(b_parent_id);
 		for(Board b : bList) {
 			System.out.printf("    └─ %s\n\n", b.getB_content());
@@ -154,4 +158,14 @@ public class BoardApp {
 		}
 		
 	}
+	
+	//로그인
+	public void login() {
+		Board member = new Board();
+		member.setU_id(ScannerUtil.readStr("아이디 입력"));
+		member.setU_pass(ScannerUtil.readStr("비밀번호 입력"));
+		boardList.login(member);
+		
+	}
+	
 }
