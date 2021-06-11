@@ -13,23 +13,23 @@ public class Board {
 	private String b_content;
 	private String b_writer;
 	private int b_parent_id;
-	private String b_comment;
 	
 
 	
 	public Board() {}
 	
-	public Board(int b_id, String b_title, String b_content, String b_writer, int b_parent_id, String b_comment) {
+	public Board(int b_id, String b_title, String b_content, String b_writer, int b_parent_id) {
 		super();
 		this.b_id = b_id;
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.b_writer = b_writer;
 		this.b_parent_id = b_parent_id;
-		this.b_comment = b_comment;
 	}
 	
 	
+	
+	//한건조회하면 출력되는 양식 작성
 	public Board(int b_id, String b_title, String b_content, String b_writer) {
 //		super();
 //		this.b_id = b_id;
@@ -39,7 +39,7 @@ public class Board {
 	}
 	
 	
-	//등록하면 보이는 출력양식
+	//게시글 등록하면 보이는 출력양식
 	public Board(String b_title, String b_content, String b_writer) {
 		//this(0, b_title, b_content, b_writer);
 		
@@ -49,17 +49,21 @@ public class Board {
 	
 	
 	//댓글 달면 나오는 풍경
-	public Board(int b_id, String b_comment) {
-		//this(b_id, "제목", b_content, "작성자", 0, b_comment);
+	public Board(int b_parent_id, String b_content) {
+//		this(0, "제목", b_content, "작성자", b_parent_id);
 		//System.out.printf("%d\t%s\t%s\n%s\n", b_id, b_title, b_writer, b_content);
 	}
 	
+	
 
 	
+	//전체조회 및 기본출력양식
 	@Override
 	public String toString() {
-		return "글 번호 [" + b_id + "] " + "\n" + "제목: " + b_title + "\n" + "작성자: " + b_writer + "\n" + 
-				"내용: " + b_content + "\n";
+		System.out.printf(" %d\t\t %s\t\t\t %s", b_id, b_title, b_writer);
+		//return "글 번호 [" + b_id + "] " + "\n" + "제목: " + b_title + "\n" + "작성자: " + b_writer + "\n" + 
+			//	"내용: " + b_content + "\n";
+		return "";
 	}
 	
 	
@@ -106,16 +110,6 @@ public class Board {
 
 	public void setB_parent_id(int b_parent_id) {
 		this.b_parent_id = b_parent_id;
-	}
-
-	
-	
-	public String getB_comment() {
-		return b_comment;
-	}
-
-	public void setB_comment(String b_comment) {
-		this.b_comment = b_comment;
 	}
 
 	

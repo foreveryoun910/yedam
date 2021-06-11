@@ -14,6 +14,7 @@ import co.board.util.ScannerUtil;
 public class BoardApp {
 	BoardAccess boardList = new BoardDAO();
 	Scanner scan = new Scanner(System.in);
+	Board board;
 
 	public void start() {
 		int menunum;
@@ -31,7 +32,8 @@ public class BoardApp {
 			case 3: updatePost(); break;
 			case 4: deletePost(); break;
 			case 5: findPost(); break;
-			case 6: inputComment(); break;
+			case 6: findIdPost(); break;
+			case 7: inputComment(); break;
 			}
 			
 		} while(menunum != 0);
@@ -39,17 +41,20 @@ public class BoardApp {
 	
 	
 	public void menuTitle() {
-		System.out.println("============================================================================");
-		System.out.println(" 1.전체글 조회 | 2.글 등록 | 3.글 수정 | 4.글 삭제 | 5.글 선택조회 | 6.댓글 등록 | 0.종료");
-		System.out.println("============================================================================");
+		System.out.println("==================================================================================================");
+		System.out.println("1.전체글 조회 | 2.글 등록 | 3.글 수정 | 4.글 삭제 | 5.작성자로 글 찾기 | 6.글번호로 글 찾기 | 7.댓글 등록 | 0.종료");
+		System.out.println("==================================================================================================");
 	}
 	
 	
 	//1.전체리스트	
 	public void findAllPost() {
 		ArrayList<Board> list = boardList.findAllPost();
-		for(Board board : list) {
-			System.out.println(board);
+		System.out.println("==================================================================");
+		System.out.println("글번호" + "\t" + "\t" + "제목" + "\t" + "\t" + "\t" + "\t" + "작성자");
+		System.out.println("------------------------------------------------------------------");
+		for(Board b : list) {
+			System.out.println(b);
 		}
 		
 		
@@ -97,7 +102,32 @@ public class BoardApp {
 	public void findPost() {
 		String b_writer = ScannerUtil.readStr("작성자 검색");
 		ArrayList<Board> boards = boardList.findPost(b_writer);
-		System.out.println(boards);
+		System.out.println("==================================================================");
+		System.out.println("글번호" + "\t" + "\t" + "제목" + "\t" + "\t" + "\t" + "\t" + "작성자");
+		System.out.println("------------------------------------------------------------------");
+		for(Board b : boards) {
+			System.out.printf(" %d\t\t %s\t\t\t %s\n\n<내용>\n %s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
+		}
+		//System.out.println(boards);
+	}
+	
+	
+	//5-1.글 번호로 게시글 조회하기
+	public void findIdPost() {
+		int b_id = ScannerUtil.readInt("글번호 검색");
+		int b_parent_id = b_id;
+		ArrayList<Board> boards = boardList.findIdPost(b_id);
+		System.out.println("==================================================================");
+		System.out.println("글번호" + "\t" + "\t" + "제목" + "\t" + "\t" + "\t" + "\t" + "작성자");
+		System.out.println("------------------------------------------------------------------");
+		for(Board b : boards) {
+			System.out.printf(" %d\t\t %s\t\t\t %s\n\n\n %s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
+		}
+		ArrayList<Board> bList = boardList.printComment(b_parent_id);
+		for(Board b : bList) {
+			System.out.printf("    └─ %s\n\n", b.getB_content());
+		}
+		//System.out.println(boards);
 	}
 	
 
@@ -107,15 +137,21 @@ public class BoardApp {
 		Board board = new Board();
 		board.setB_parent_id(ScannerUtil.readInt("댓글 달 글번호"));
 		//int b_id = ScannerUtil.readInt("댓글 달 글번호");
-		board.setB_comment(ScannerUtil.readStr("댓글 입력")); //String b_comment = ScannerUtil.readStr("댓글 입력");
+		board.setB_content(ScannerUtil.readStr("댓글 입력")); //String b_comment = ScannerUtil.readStr("댓글 입력");
 		//board.setB_parent_id(b_id);
 		//System.out.println(board + "\n" + "└─댓글: " + board.getB_comment());
 		boardList.inputComment(board);
-		System.out.println("입력한 댓글: " + board.getB_comment());
-		
+		System.out.println("입력한 댓글: " + board.getB_content());
 		
 	}
 	
-	
-	
+	//댓글출력
+	public void printComment() {
+		int b_parent_id = ScannerUtil.readInt("글번호 검색");
+		ArrayList<Board> boards = boardList.printComment(b_parent_id);
+		for(Board b : boards) {
+			System.out.printf("댓글단 글번호: %d\n댓글내용: %s\n\n", b.getB_parent_id(), b.getB_content());
+		}
+		
+	}
 }

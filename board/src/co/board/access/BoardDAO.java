@@ -29,16 +29,15 @@ public class BoardDAO implements BoardAccess {
 		boardList = new ArrayList<Board>();
 		
 		try {
-			psmt = conn.prepareStatement("select * from board");
+			psmt = conn.prepareStatement("select * from board where b_parent_id is null");
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
 				board = new Board();
 				board.setB_id(rs.getInt("b_id"));
 				board.setB_title(rs.getString("b_title"));
-				board.setB_content(rs.getString("b_content"));
+//				board.setB_content(rs.getString("b_content"));
 				board.setB_writer(rs.getString("b_writer"));
-				board.setB_comment(rs.getString("b_comment"));
 				
 				boardList.add(board);
 			}
@@ -139,6 +138,36 @@ public class BoardDAO implements BoardAccess {
 	}
 	
 	
+	//5-1.게시글 조회(글번호로 게시글 조회)
+	@Override
+	public ArrayList<Board> findIdPost(int b_id) {
+		connect();
+		boardList = new ArrayList<Board>();
+		
+		try {
+			psmt = conn.prepareStatement("select * from board where b_id=?");
+			psmt.setInt(1, b_id);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				board = new Board();
+				board.setB_id(rs.getInt("b_id"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_writer(rs.getString("b_writer"));
+				
+				boardList.add(board);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {close();}
+	
+		return boardList;
+	}
+	
+	
+	
 	
 	
 	//댓글등록
@@ -147,9 +176,9 @@ public class BoardDAO implements BoardAccess {
 	public Board inputComment(Board board) {
 		connect();
 		try {
-			psmt = conn.prepareStatement("insert into board(b_title, b_content, b_writer, b_parent_id, b_comment) values('제목', '내용', '작성자', (select b_id from board where b_id=?), ?)");
-			psmt.setInt(1, board.getB_parent_id());
-			psmt.setString(2, board.getB_comment());
+			psmt = conn.prepareStatement("insert into board(b_title, b_content, b_writer, b_parent_id) values('제목', ?, '작성자', (select b_id from board where b_id=?))");
+			psmt.setString(1, board.getB_content());
+			psmt.setInt(2, board.getB_parent_id());
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건의 댓글이 작성되었습니다.");
 			
@@ -161,6 +190,39 @@ public class BoardDAO implements BoardAccess {
 	}
 	
 
+	//댓글출력
+	public ArrayList<Board> printComment(int b_parent_id) {
+		
+		String url = "jdbc:sqlite:C:/sqlite/db/sample.db";
+		try {
+			conn = DriverManager.getConnection(url);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		boardList = new ArrayList<Board>();
+		try {
+			psmt = conn.prepareStatement("select * from board where b_parent_id=?");
+			psmt.setInt(1, b_parent_id);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				board = new Board();
+				board.setB_parent_id(rs.getInt("b_parent_id"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_id(rs.getInt("b_id"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_writer(rs.getString("b_writer"));
+				
+				boardList.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {close();}
+		
+		return boardList;	
+	}
+	
 	
 	
 	
