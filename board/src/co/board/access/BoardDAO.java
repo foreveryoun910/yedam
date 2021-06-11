@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import co.board.model.Board;
 
@@ -21,6 +20,7 @@ public class BoardDAO implements BoardAccess {
 	String sql;
 	ArrayList<Board> boardList;
 	Board board;
+	int count = 0;		//로그인 확인용 카운트
 	
 	
 	//1.전체리스트	
@@ -231,15 +231,16 @@ public class BoardDAO implements BoardAccess {
 	@Override
 	public void login(Board board) {
 		connect();
+
 		try {
 			psmt = conn.prepareStatement("select * from member where u_id=? and u_pass=?");
 			psmt.setString(1, board.getU_id());
 			psmt.setString(2, board.getU_pass());
 			rs = psmt.executeQuery();
 			
-			if(rs.next()) {
-				System.out.println("로그인 성공");
-			} else {System.out.println("로그인 실패");}
+				if(rs.next()) {
+					count = count++;
+				}				
 			
 		} catch (SQLException e) {
 			

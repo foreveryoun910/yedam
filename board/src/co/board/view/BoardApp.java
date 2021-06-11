@@ -165,6 +165,7 @@ public class BoardApp {
 		member.setU_id(ScannerUtil.readStr("아이디 입력"));
 		member.setU_pass(ScannerUtil.readStr("비밀번호 입력"));
 		boardList.login(member);
+			
 		
 	}
 	
