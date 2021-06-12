@@ -30,7 +30,5 @@ public interface BoardAccess {
 
 	public ArrayList<Board> printComment(int b_parent_id);
 	
-	//로그인
-	public void login(Member member);
 	
 }

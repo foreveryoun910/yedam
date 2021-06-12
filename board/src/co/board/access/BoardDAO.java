@@ -228,30 +228,6 @@ public class BoardDAO implements BoardAccess {
 	
 	
 	
-	//로그인
-	@Override
-	public void login(Member member) {
-		connect();
-
-		try {
-			psmt = conn.prepareStatement("select * from member where u_id=? and u_pass=?");
-			psmt.setString(1, member.getU_id());
-			psmt.setString(2, member.getU_pass());
-			rs = psmt.executeQuery();
-			
-				if(rs.next()) {
-					count = count++;
-				}				
-			
-		} catch (SQLException e) {
-			
-			//
-			e.printStackTrace();
-		} finally {close();}
-	}
-	
-	
-	
 	
 	//연결메소드
 	public static void connect() {

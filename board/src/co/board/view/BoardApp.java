@@ -19,7 +19,7 @@ public class BoardApp {
 
 	public void start() {
 		
-		login();
+//		login();
 		
 		int menunum;
 		do {
@@ -160,14 +160,5 @@ public class BoardApp {
 		
 	}
 	
-	//로그인
-	public void login() {
-		Member member = new Member();
-		member.setU_id(ScannerUtil.readStr("아이디 입력"));
-		member.setU_pass(ScannerUtil.readStr("비밀번호 입력"));
-		boardList.login(member);
-			
-		
-	}
-	
+
 }
