@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import co.board.access.BoardAccess;
 import co.board.access.BoardDAO;
+import co.board.access.MemberDAO;
 import co.board.model.Board;
-import co.board.model.Member;
 import co.board.util.ScannerUtil;
 
 /*
@@ -17,9 +17,7 @@ public class BoardApp {
 	Scanner scan = new Scanner(System.in);
 	Board board;
 
-	public void start() {
-		
-//		login();
+	public void start() {		
 		
 		int menunum;
 		do {
@@ -158,6 +156,33 @@ public class BoardApp {
 			System.out.printf("댓글단 글번호: %d\n댓글내용: %s\n\n", b.getB_parent_id(), b.getB_content());
 		}
 		
+	}
+	
+	
+	//로그인체크
+	public boolean loginCheck() {
+		boolean result = false;
+		MemberDAO memberDAO = new MemberDAO();
+		String id = ScannerUtil.readStr("아이디 입력");
+		String password = ScannerUtil.readStr("비밀번호 입력");
+		boolean loginCheck = memberDAO.login(id, password);
+		
+		if(loginCheck == true) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	//로그인
+	public void login() {
+		if(loginCheck()) {
+			BoardApp app = new BoardApp();
+			app.start();
+		}
+		else {
+			System.out.println("로그인 실패!");
+		}
 	}
 	
 
