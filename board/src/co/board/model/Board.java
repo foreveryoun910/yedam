@@ -14,9 +14,6 @@ public class Board {
 	private String b_writer;
 	private int b_parent_id;
 	
-	private String u_id;
-	private String u_pass;
-	
 
 
 
@@ -116,24 +113,5 @@ public class Board {
 		this.b_parent_id = b_parent_id;
 	}
 
-	
-	
-	public String getU_id() {
-		return u_id;
-	}
-
-	public void setU_id(String u_id) {
-		this.u_id = u_id;
-	}
-
-	public String getU_pass() {
-		return u_pass;
-	}
-
-	public void setU_pass(String u_pass) {
-		this.u_pass = u_pass;
-	}
-	
-	
 	
 }

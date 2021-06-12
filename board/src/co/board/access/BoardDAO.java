@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.board.model.Board;
+import co.board.model.Member;
 
 /*
  * 구현클래스
@@ -229,13 +230,13 @@ public class BoardDAO implements BoardAccess {
 	
 	//로그인
 	@Override
-	public void login(Board board) {
+	public void login(Member member) {
 		connect();
 
 		try {
 			psmt = conn.prepareStatement("select * from member where u_id=? and u_pass=?");
-			psmt.setString(1, board.getU_id());
-			psmt.setString(2, board.getU_pass());
+			psmt.setString(1, member.getU_id());
+			psmt.setString(2, member.getU_pass());
 			rs = psmt.executeQuery();
 			
 				if(rs.next()) {

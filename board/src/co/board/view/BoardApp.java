@@ -6,6 +6,7 @@ import java.util.Scanner;
 import co.board.access.BoardAccess;
 import co.board.access.BoardDAO;
 import co.board.model.Board;
+import co.board.model.Member;
 import co.board.util.ScannerUtil;
 
 /*
@@ -109,7 +110,7 @@ public class BoardApp {
 		System.out.println("글번호" + "\t" + "\t" + "제목" + "\t" + "\t" + "\t" + "\t" + "작성자");
 		System.out.println("------------------------------------------------------------------");
 		for(Board b : boards) {
-			System.out.printf(" %-15d %-30s -10%s\n\n\n %-10s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
+			System.out.printf(" %-15d %-30s %-10s\n\n\n %-10s\n\n\n", b.getB_id(), b.getB_title(), b.getB_writer(), b.getB_content());
 		}
 		//System.out.println(boards);
 	}
@@ -161,7 +162,7 @@ public class BoardApp {
 	
 	//로그인
 	public void login() {
-		Board member = new Board();
+		Member member = new Member();
 		member.setU_id(ScannerUtil.readStr("아이디 입력"));
 		member.setU_pass(ScannerUtil.readStr("비밀번호 입력"));
 		boardList.login(member);

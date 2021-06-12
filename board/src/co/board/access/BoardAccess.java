@@ -3,6 +3,7 @@ package co.board.access;
 import java.util.ArrayList;
 
 import co.board.model.Board;
+import co.board.model.Member;
 
 public interface BoardAccess {
 
@@ -30,6 +31,6 @@ public interface BoardAccess {
 	public ArrayList<Board> printComment(int b_parent_id);
 	
 	//로그인
-	public void login(Board board);
+	public void login(Member member);
 	
 }
